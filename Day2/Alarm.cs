@@ -12,10 +12,13 @@ namespace alarm_puzzle
         {2, "*"},
         {99, "End"}
     };
-        public static int AlarmResult(string input)
+        public static List<int> IntList(string input)
         {
             var stringList = input.Split(',').ToList();
-            var intList = stringList.Select(x => int.Parse(x.Trim())).ToList();
+            return stringList.Select(x => int.Parse(x.Trim())).ToList();
+        }
+        public static List<int> findResult(List<int> intList)
+        {
             int currentOpCode = intList[0];
             int currentIndex = 0;
             while (opCodes.Keys.Contains(currentOpCode) && currentOpCode != 99)
@@ -37,8 +40,47 @@ namespace alarm_puzzle
                 currentIndex += 4;
                 currentOpCode = intList[currentIndex];
             }
-            string result = string.Join(",", intList.Select(x => x.ToString()).ToArray());
-            return intList[0];
+            return intList;
+        }
+        public static int AlarmResultTest(string input)
+        {
+            var intList = IntList(input);
+            var finalList = findResult(intList);
+            return finalList[0];
+        }
+        public static int AlarmResult(string input)
+        {
+            var intList = IntList(input);
+            intList[1] = 12;
+            intList[2] = 2;
+            var finalList = findResult(intList);
+            return finalList[0];
+        }
+        public static (int result, int noun, int verb) LongResult(string input)
+        {
+            var intList = IntList(input);
+            var newList = intList;
+            var finalList = findResult(newList);
+            for (var noun = newList[1]; newList[1] <= 99; newList[1]++)
+            {
+                
+                for (var verb = newList[2]; newList[2] <= 99; newList[2]++)
+                {
+                    
+                    finalList = findResult(newList); 
+                    if (finalList[0] == 19690720) break;
+                }
+                if (finalList[0] == 19690720) break;
+                finalList = findResult(newList);
+            }
+            
+            return (result: finalList[0], noun: finalList[1], verb: finalList[2]);
+
+        }
+        public static int FinalOutput(string input)
+        {
+            var longResult = LongResult(input);
+            return (100 * longResult.noun) + longResult.verb;
         }
     }
 }

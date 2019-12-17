@@ -25,31 +25,41 @@ public class AlarmTest
     [Fact]
     public void Part1_Test_1()
     {
-        Assert.Equal(testResult1, alarm_puzzle.Alarm.AlarmResult(testInput1));
+        Assert.Equal(testResult1, alarm_puzzle.Alarm.AlarmResultTest(testInput1));
     }
     [Fact]
     public void Part1_Test_2()
     {
-        Assert.Equal(testResult2, alarm_puzzle.Alarm.AlarmResult(testInput2));
+        Assert.Equal(testResult2, alarm_puzzle.Alarm.AlarmResultTest(testInput2));
     }
     [Fact]
     public void Part1_Test_3()
     {
-        Assert.Equal(testResult3, alarm_puzzle.Alarm.AlarmResult(testInput3));
+        Assert.Equal(testResult3, alarm_puzzle.Alarm.AlarmResultTest(testInput3));
     }
     [Fact]
     public void Part1_Test_4()
     {
-        Assert.Equal(testResult4, alarm_puzzle.Alarm.AlarmResult(testInput4));
+        Assert.Equal(testResult4, alarm_puzzle.Alarm.AlarmResultTest(testInput4));
     }
     [Fact]
     public void Part1_Test_5()
     {
-        Assert.Equal(testResult5, alarm_puzzle.Alarm.AlarmResult(testInput5));
+        Assert.Equal(testResult5, alarm_puzzle.Alarm.AlarmResultTest(testInput5));
     }
     [Fact]
     public void Part1_Puzzle()
     {
         Assert.Equal(9706670, alarm_puzzle.Alarm.AlarmResult(puzzleInput));
+    }
+    [Fact]
+    public void Part2_Puzzle()
+    {
+        Assert.Equal(19690720, alarm_puzzle.Alarm.LongResult(puzzleInput).result);
+    }
+    [Fact]
+    public void Part2_Puzzle_Final()
+    {
+        Assert.Equal(3530, alarm_puzzle.Alarm.FinalOutput(puzzleInput));
     }
 }
