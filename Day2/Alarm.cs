@@ -58,22 +58,29 @@ namespace alarm_puzzle
         }
         public static (int result, int noun, int verb) LongResult(string input)
         {
-            var intList = IntList(input);
-            var newList = intList;
+            var newList = IntList(input);
             var finalList = findResult(newList);
-            for (var noun = newList[1]; newList[1] <= 99; newList[1]++)
+            var noun = newList[1];
+            var verb = newList[2];
+            while (noun < 99)
             {
-                
-                for (var verb = newList[2]; newList[2] <= 99; newList[2]++)
+                bool reset = true;
+                while (verb < 99)
                 {
-                    
-                    finalList = findResult(newList); 
+                    if (!reset)
+                        verb = newList[2] + 1;
+                        reset = false;
+                    newList = IntList(input);
+                    newList[1] = noun;
+                    newList[2] = verb;
+                    finalList = findResult(newList);
                     if (finalList[0] == 19690720) break;
                 }
                 if (finalList[0] == 19690720) break;
-                finalList = findResult(newList);
+                noun = newList[1] + 1;
+                reset = true;
+                verb = 0;   
             }
-            
             return (result: finalList[0], noun: finalList[1], verb: finalList[2]);
 
         }

@@ -55,11 +55,12 @@ public class AlarmTest
     [Fact]
     public void Part2_Puzzle()
     {
-        Assert.Equal(19690720, alarm_puzzle.Alarm.LongResult(puzzleInput).result);
+        var result = alarm_puzzle.Alarm.LongResult(puzzleInput);
+        Assert.Equal(19690720, result.result);
     }
     [Fact]
     public void Part2_Puzzle_Final()
     {
-        Assert.Equal(3530, alarm_puzzle.Alarm.FinalOutput(puzzleInput));
+        Assert.Equal(2552, alarm_puzzle.Alarm.FinalOutput(puzzleInput));
     }
 }
