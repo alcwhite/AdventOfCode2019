@@ -69,11 +69,12 @@ namespace wire_sorting
             var locations2 = Locations(wire2);
             return (locations1: locations1, locations2: locations2);
         }
-        public static List<(int x, int y)> Intersections(List<string> input)
+        public static List<(int x, int y, int steps)> Intersections(List<string> input)
         {
             var allLocations = AllLocations(input);
+            var wire2Intersections = allLocations.locations2.Where(stop => allLocations.locations1.Exists(otherStop => stop.x == otherStop.x && stop.y == otherStop.y)).ToList();
             var intersectingLocations = allLocations.locations1.Where(stop => allLocations.locations2.Exists(otherStop => stop.x == otherStop.x && stop.y == otherStop.y)).ToList();
-            return intersectingLocations.Select(x => (x: x.x, y: x.y)).ToList();
+            return intersectingLocations.Select(x => (x: x.x, y: x.y, steps: x.steps + wire2Intersections.Where(y => x.x == y.x && x.y == y.y).ToList()[0].steps)).ToList();
         }
         public static List<int> ManhattanDistance(List<string> input)
         {
@@ -87,19 +88,16 @@ namespace wire_sorting
         }
         public static int Steps(List<string> input)
         {
-            var minDistance = MinDistance(input);
             var allDistances = ManhattanDistance(input);
             var allLocations = AllLocations(input);
             var intersections = Intersections(input);
-            var minIndex = allDistances.FindIndex(x => x == minDistance);
-            var location = intersections[minIndex];
-            var allWire1Locations = allLocations.locations1;
-            var allWire2Locations = allLocations.locations2;
-            var wire1Location = allWire1Locations.FindIndex(stop => stop.x == location.x && stop.y == location.y);
-            var wire2Location = allWire2Locations.FindIndex(stop => stop.x == location.x && stop.y == location.y);
-            var wire1Stop = allWire1Locations[wire1Location];
-            var wire2Stop = allWire2Locations[wire2Location];
-            return wire1Stop.steps + wire2Stop.steps;
+            var intersectionSteps = new List<int>();
+            foreach((int x, int y, int steps) stop in intersections)
+            {
+                intersectionSteps.Add(stop.steps);
+            }
+
+            return intersectionSteps.Min();
         }
 
     }

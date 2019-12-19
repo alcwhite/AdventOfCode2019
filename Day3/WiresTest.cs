@@ -37,12 +37,12 @@ public class WireTest
     [Fact]
     public void Part2_Puzzle() 
     {
-        Assert.Equal(3247, wire_sorting.Wires.Steps(input));
+        Assert.Equal(48054, wire_sorting.Wires.Steps(input));
     }
     [Fact]
     public void Part2_Test1() 
     {
-        Assert.Equal(40, wire_sorting.Wires.Steps(testInput1));
+        Assert.Equal(30, wire_sorting.Wires.Steps(testInput1));
     }
     [Fact]
     public void Part2_Test2() 
