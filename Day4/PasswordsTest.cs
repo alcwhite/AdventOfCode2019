@@ -30,7 +30,7 @@ public class PasswordsTest
     [Fact]
     public void Part2_Puzzle() 
     {
-        Assert.Equal(337, password_puzzle.Passwords.PasswordCountForReal(input));
+        Assert.Equal(292, password_puzzle.Passwords.PasswordCountForReal(input));
     }
     [Fact]
     public void Part2_Test1() 
@@ -50,6 +50,16 @@ public class PasswordsTest
     [Fact]
     public void Part2_Test4() 
     {
-        Assert.True(password_puzzle.Passwords.PasswordPassesForReal(221111));
+        Assert.True(password_puzzle.Passwords.PasswordPassesForReal(223333));
+    }
+    [Fact]
+    public void Part2_Test5() 
+    {
+        Assert.True(password_puzzle.Passwords.PasswordPassesForReal(122333));
+    }
+    [Fact]
+    public void Part2_Test6() 
+    {
+        Assert.True(password_puzzle.Passwords.PasswordPassesForReal(111223));
     }
 }

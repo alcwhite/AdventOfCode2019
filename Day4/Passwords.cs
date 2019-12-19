@@ -53,7 +53,7 @@ namespace password_puzzle
                 foreach (char digit in passwordList)
             {
                 int digitInt = int.Parse(digit.ToString());
-                if (count > 1)
+                if (count > 1 && count < passwordList.Count - 1)
                 {
                     string formerDigit = passwordList[count - 2].ToString();
                     var formerDigitInt = int.Parse(formerDigit);
@@ -61,9 +61,9 @@ namespace password_puzzle
                     var nextDigitInt = int.Parse(nextDigit);
                     if (digitInt == int.Parse(passwordList[count - 1].ToString()))
                     {
-                        if (digitInt == formerDigitInt && digitInt == nextDigitInt)
+                        if (digitInt == formerDigitInt || digitInt == nextDigitInt)
                             largerSet = true;
-                        if (!largerSet)
+                        else
                             extraDouble = true;
                     }
                     
@@ -79,6 +79,18 @@ namespace password_puzzle
                             extraDouble = true;
                     }
                     
+                }
+                if (count == passwordList.Count - 1)
+                {
+                    string formerDigit = passwordList[count - 2].ToString();
+                    var formerDigitInt = int.Parse(formerDigit);
+                    if (digitInt == int.Parse(passwordList[count - 1].ToString()))
+                    {
+                        if (digitInt == formerDigitInt)
+                            largerSet = true;
+                        else
+                            extraDouble = true;
+                    }
                 }
                 count++;
             }
