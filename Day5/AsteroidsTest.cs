@@ -23,44 +23,8 @@ public class AsteroidsTest
     int testResult5 = 30;
 
     [Fact]
-    public void Part1_Test_1()
-    {
-        Assert.Equal(testResult1, asteroid_puzzle.Asteroid.AlarmResultTest(testInput1));
-    }
-    [Fact]
-    public void Part1_Test_2()
-    {
-        Assert.Equal(testResult2, asteroid_puzzle.Asteroid.AlarmResultTest(testInput2));
-    }
-    [Fact]
-    public void Part1_Test_3()
-    {
-        Assert.Equal(testResult3, asteroid_puzzle.Asteroid.AlarmResultTest(testInput3));
-    }
-    [Fact]
-    public void Part1_Test_4()
-    {
-        Assert.Equal(testResult4, asteroid_puzzle.Asteroid.AlarmResultTest(testInput4));
-    }
-    [Fact]
-    public void Part1_Test_5()
-    {
-        Assert.Equal(testResult5, asteroid_puzzle.Asteroid.AlarmResultTest(testInput5));
-    }
-    [Fact]
     public void Part1_Puzzle()
     {
         Assert.Equal(9706670, asteroid_puzzle.Asteroid.AlarmResult(puzzleInput));
-    }
-    [Fact]
-    public void Part2_Puzzle()
-    {
-        var result = asteroid_puzzle.Asteroid.LongResult(puzzleInput);
-        Assert.Equal(19690720, result.result);
-    }
-    [Fact]
-    public void Part2_Puzzle_Final()
-    {
-        Assert.Equal(2552, asteroid_puzzle.Asteroid.FinalOutput(puzzleInput));
     }
 }
